@@ -1,17 +1,9 @@
-from string import ascii_lowercase, digits, punctuation
 from typing import Optional
 
 from common.base_class import BaseCipher
 
 
 class CeasarCipher(BaseCipher):
-    num_alphabet_type_map = {
-        0: 'All',
-        1: 'Letters',
-        2: 'Letters and digits',
-        3: 'Letters and punctuations'
-    }
-
     def __init__(self, offset: int, alphabet_id: Optional[int] = 0):
         self.offset = offset
         self.alphabet = self.get_alphabet(alphabet_id)
@@ -30,19 +22,6 @@ class CeasarCipher(BaseCipher):
             char_index_map[char] = ind
 
         return index_char_map, char_index_map
-
-    @staticmethod
-    def get_alphabet(alphabet_id: int) -> str:
-        if alphabet_id == 0:
-            return ascii_lowercase + digits + punctuation
-        elif alphabet_id == 1:
-            return ascii_lowercase
-        elif alphabet_id == 2:
-            return ascii_lowercase + digits
-        elif alphabet_id == 3:
-            return ascii_lowercase + punctuation
-        else:
-            return ascii_lowercase + digits + punctuation
 
     def encrypt(self, message: str, offset: Optional[int] = None) -> str:
         """Encrypts the message with ceasar cipher"""
