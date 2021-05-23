@@ -34,7 +34,7 @@ class CeasarCipher(BaseCipher):
                 char = self.index_char_map[(char_index + offset) % len(self.alphabet)]
                 encrypted_message.append(char)
             else:
-                encrypted_message.append(' ')
+                encrypted_message.append(symbol)
         return ''.join(encrypted_message)
 
     def decrypt(self, message: str, offset: Optional[int] = None):
